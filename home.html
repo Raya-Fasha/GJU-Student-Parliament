@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Student Parliament</title>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Mona Sans"', "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-[#000714] text-white font-sans">
+<nav id="navbar"
+  class="fixed top-0 left-0 w-full z-[9999] transition-all duration-300 bg-gradient-to-b from-[#000714]/60 to-transparent"
+>
+  <div class="relative flex items-center h-16 px-6">
+
+    <!-- LEFT: HAMBURGER -->
+    <button id="menuBtn" class="text-3xl z-50">
+      &#9776;
+    </button>
+
+    <!-- CENTER: LOGO -->
+    <div class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
+      <img src="img/logo.svg" class="h-24" alt="Logo" />
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    <!-- Sidebar -->
+    <aside
+      id="sidebar"
+      class="fixed top-0 left-0 h-full w-64 pt-40 bg-[#000714]/90 text-white transform -translate-x-full transition-transform duration-300 p-6 z-50"
+    >
+      <ul class="space-y-4">
+        <li><a href="#" class="hover:text-[#799ba8]">Members</a></li>
+        <li><a href="#" class="hover:text-[#799ba8]">Newsletter</a></li>
+        <li><a href="#" class="hover:text-[#799ba8]">Our Work</a></li>
+      </ul>
+    </aside>
+    <script>
+      const menuBtn = document.getElementById("menuBtn");
+      const sidebar = document.getElementById("sidebar");
+
+      menuBtn.onclick = () => {
+        sidebar.classList.toggle("-translate-x-full");
+      };
+    </script>
+
+    <!-- ======== HERO SECTION ======== -->
+    <section
+      class="relative w-full h-[90vh] flex items-center justify-center overflow-hidden"
+    >
+      <img
+        src="img/bg.jpg"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+    </section>
+
+    <!-- ======== Mission & Vision Section ======== -->
+    <section class="bg-[#000714] text-white py-20 px-6 md:px-20">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">About Us</h2>
+
+      <div class="grid md:grid-cols-2 gap-12">
+        <!-- Mission -->
+        <div class="p-6 bg-[#000714] rounded-2xl">
+          <h3 class="text-2xl font-bold mb-4">Mission</h3>
+          <p class="leading-relaxed text-white">
+            Our mission is to influence a paradigm shift nationally that
+            redefines the work of student parliaments to give representatives
+            opportunities to influence university decisions whether through
+            advisory or legislative powers. We aim to establish a permanent
+            council, back by a legal foundation, within the organizational
+            structure of the Ministry of Higher Education and all Jordanian
+            universities. We want students to be the centerpiece of our
+            community.
+          </p>
+        </div>
+
+        <!-- Vision -->
+        <div class="p-6 bg-[#000714] rounded-2xl">
+          <h3 class="text-2xl font-bold mb-4">Vision</h3>
+          <p class="leading-relaxed text-gray-white">
+            We want our university to have a distinct identity, blending two
+            cultures and offering equal, fair opportunities in work, applied
+            education, and research for all students.
+          </p>
+        </div>
+      </div>
+    </section>
+    <script>
+      const navbar = document.getElementById("navbar");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 100) {
+          navbar.classList.add("bg-[#000714]");
+          navbar.classList.remove(
+            "bg-gradient-to-b",
+            "from-black/60",
+            "to-transparent"
+          );
+        } else {
+          navbar.classList.remove("bg-[#000714]");
+          navbar.classList.add(
+            "bg-gradient-to-b",
+            "from-black/60",
+            "to-transparent"
+          );
+        }
+      });
+    </script>
+    <!-- ======== VALUES SECTION ======== -->
+<!-- ======== VALUES SECTION ======== -->
+<section class="mb-10">
+  <h2 class="text-2xl md:text-4xl text-center mb-10 font-bold">Our Values</h2>
+
+  <div class="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-5 text-base leading-snug">
+    <p>• Education First</p>
+    <p>• Community Over Hierarchy</p>
+
+    <p>• Transparency</p>
+    <p>• Accountability</p>
+
+    <p>• Direct Democracy</p>
+    <p>• Autonomy</p>
+
+    <p>• Reform</p>
+    <p>• Global Perspective and Collaboration</p>
+  </div>
+</section>
+
+
+
+    <!-- ======== FOOTER ======== -->
+<footer class="bg-[#000714] text-white border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+    
+    <!-- Left: Copyright / Years -->
+    <p class="text-white/70">
+      © 2024 – 2026 Student Parliament
+    </p>
+
+    <!-- Right: Links -->
+    <div class="flex flex-col md:flex-row items-center gap-3 md:gap-6">
+      <a
+        href="https://www.instagram.com/gju.student.parliament/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-[#799ba8] transition-colors"
+      >
+        Instagram: @gju.student.parliament
+      </a>
+
+      <a
+        href="mailto:students.council@gju.edu.jo"
+        class="hover:text-[#799ba8] transition-colors"
+      >
+        students.council@gju.edu.jo
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+  </body>
+</html>
