@@ -104,14 +104,14 @@
 
       window.addEventListener("scroll", () => {
         if (window.scrollY > 100) {
-          navbar.classList.add("bg-[#000714] border-b border-white/10");
+          navbar.classList.add("bg-[#000714]", "border-b", "border-white/10");
           navbar.classList.remove(
             "bg-gradient-to-b",
             "from-black/60",
             "to-transparent"
           );
         } else {
-          navbar.classList.remove("bg-[#000714] border-b border-white/10");
+          navbar.classList.remove("bg-[#000714]", "border-b", "border-white/10");
           navbar.classList.add(
             "bg-gradient-to-b",
             "from-black/60",
@@ -167,6 +167,7 @@
 
   </body>
 </html>
+
 
 
 
