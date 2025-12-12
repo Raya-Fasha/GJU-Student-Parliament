@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="device-width, initial-scale 1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Our Work</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
@@ -21,27 +21,41 @@
       };
     </script>
   </head>
+
   <body class="bg-[#000714] text-white">
- 
-  <!-- ======== NAVBAR (STATIC / ALWAYS SOLID) ======== -->
-  <nav class="fixed top-0 left-0 w-full z-50 bg-[#000714] border-b border-white/10">
-    <div class="relative flex items-center h-16 px-6">
 
-       <!-- LEFT: HAMBURGER -->
-    <button id="menuBtn" class="text-3xl z-[9999]">
-      &#9776;
-    </button>
+    <!-- ======== NAVBAR ======== -->
+    <nav class="fixed top-0 left-0 w-full z-[100] bg-[#000714] border-b border-white/10">
+      <div class="relative flex items-center h-16 px-6">
 
+        <!-- HAMBURGER -->
+        <button
+          id="menuBtn"
+          class="text-3xl relative z-[110]"
+          aria-label="Open menu"
+        >
+          &#9776;
+        </button>
 
-      <!-- Centered Logo -->
-      <a href="home.html" class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
-  <img src="logo.svg" class="h-24" alt="Student Parliament Logo" />
-</a>
-    </div>
-  </nav>
- <aside
+        <!-- LOGO -->
+        <a
+          href="home.html"
+          class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center"
+        >
+          <img src="logo.svg" class="h-10 md:h-12" alt="Student Parliament Logo" />
+        </a>
+
+      </div>
+    </nav>
+
+    <!-- ======== SIDEBAR ======== -->
+    <aside
       id="sidebar"
-      class="fixed top-0 left-0 h-full w-64 pt-40 bg-[#000714]/90 text-white transform -translate-x-full transition-transform duration-300 p-6 z-50"
+      class="fixed top-0 left-0 h-full w-64 max-w-[80vw] pt-40
+             bg-[#000714]/90 text-white
+             transform -translate-x-full
+             transition-transform duration-300
+             p-6 z-40 pointer-events-none"
     >
       <ul class="space-y-4">
         <li><a href="#" class="hover:text-[#799ba8]">Members</a></li>
@@ -49,80 +63,98 @@
         <li><a href="archive.html" class="hover:text-[#799ba8]">Our Work</a></li>
       </ul>
     </aside>
+
+    <!-- ======== SIDEBAR SCRIPT ======== -->
     <script>
       const menuBtn = document.getElementById("menuBtn");
       const sidebar = document.getElementById("sidebar");
 
-      menuBtn.onclick = () => {
+      menuBtn.addEventListener("click", () => {
+        const closed = sidebar.classList.contains("-translate-x-full");
+
         sidebar.classList.toggle("-translate-x-full");
-      };
+
+        if (closed) {
+          sidebar.classList.remove("pointer-events-none");
+        } else {
+          sidebar.classList.add("pointer-events-none");
+        }
+      });
+
+      sidebar.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+          sidebar.classList.add("-translate-x-full", "pointer-events-none");
+        });
+      });
     </script>
-  <!-- Spacer for fixed navbar -->
-  <div class="h-20"></div>
 
-  <!-- ======== ACTIVE SURVEYS ======== -->
-  <section class="py-16 px-6 md:px-20">
-    <h2 class="text-3xl font-bold mb-6">Active Surveys</h2>
+    <!-- SPACER -->
+    <div class="h-20"></div>
 
-    <ul class="space-y-4 max-w-3xl">
-      <li>
-        <a
-          href="https://forms.office.com/r/5m8QG30wpm"
-          target="_blank"
-          class="hover:text-[#799ba8]"
-        >
-Internship Requirements Survey        </a>
-      </li>
-  </section>
+    <!-- ======== ACTIVE SURVEYS ======== -->
+    <section class="py-16 px-6 md:px-20">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6">Active Surveys</h2>
 
-  <!-- ======== PAST SURVEYS ======== -->
-  <section class="py-16 px-6 md:px-20 bg-white/5">
-    <h2 class="text-3xl font-bold mb-6">Past Surveys</h2>
-
-    <ul class="space-y-3 max-w-3xl text-white/80">
-      <li>Student Club Framework</li>
-    </ul>
-  </section>
-
-  <!-- ======== PROBLEMS WE SOLVED ======== -->
-  <section class="py-16 px-6 md:px-20">
-    <h2 class="text-3xl font-bold mb-10">Problems We Tackled</h2>
-
-    <div class="space-y-10 max-w-4xl">
-
-      <!-- Problem Item -->
-      <div>
-        <h3 class="text-xl font-semibold mb-2">Cafeteria Services</h3>
-      </div>
-
-    </section>
-  <!-- ======== FOOTER ======== -->
-  <footer class="border-t border-white/10 py-6 px-6 text-sm text-white/70 flex flex-col md:flex-row justify-between">
-    <p>© 2024 – 2026 Student Parliament</p>
-    <div class="flex gap-4">
-      <a
-        href="https://www.instagram.com/gju.student.parliament/"
-        target="_blank"
-        class="hover:text-white"
-      >
-        Instagram
-      </a>
-      <a href="mailto:students.council@gju.edu.jo" class="hover:text-white">
-        students.council@gju.edu.jo
-      </a>
+        <ul class="space-y-4">
+          <li>
             <a
-        href="https://chat.whatsapp.com/GkkpWbNnHZmLRPqLpFMwnJ?mode=wwc"
-        target="_blank"
-        class="hover:text-white"
-      >
-        WhatsApp Group
-      </a>
-    </div>
-  </footer>
+              href="https://forms.office.com/r/5m8QG30wpm"
+              target="_blank"
+              class="hover:text-[#799ba8]"
+            >
+              Internship Requirements Survey
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-</body>
+    <!-- ======== PAST SURVEYS ======== -->
+    <section class="py-16 px-6 md:px-20 bg-white/5">
+      <div class="max-w-3xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6">Past Surveys</h2>
+
+        <ul class="space-y-3 text-white/80">
+          <li>Student Club Framework</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======== PROBLEMS WE SOLVED ======== -->
+    <section class="py-16 px-6 md:px-20">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-10">Problems We Tackled</h2>
+
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Cafeteria Services</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== FOOTER ======== -->
+    <footer class="border-t border-white/10 py-6 px-6 text-sm text-white/70 flex flex-col md:flex-row justify-between">
+      <p>© 2024 – 2026 Student Parliament</p>
+      <div class="flex gap-4">
+        <a
+          href="https://www.instagram.com/gju.student.parliament/"
+          target="_blank"
+          class="hover:text-white"
+        >
+          Instagram
+        </a>
+        <a href="mailto:students.council@gju.edu.jo" class="hover:text-white">
+          students.council@gju.edu.jo
+        </a>
+        <a
+          href="https://chat.whatsapp.com/GkkpWbNnHZmLRPqLpFMwnJ?mode=wwc"
+          target="_blank"
+          class="hover:text-white"
+        >
+          WhatsApp Group
+        </a>
+      </div>
+    </footer>
+
+  </body>
 </html>
-
-
-
-
