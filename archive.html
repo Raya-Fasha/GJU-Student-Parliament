@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="device-width, initial-scale 1.0" />
-    <title>Student Parliament | GJU</title>
+    <title>Our Work</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Mona+Sans:wght@400;600;700&display=swap"
@@ -27,16 +27,33 @@
   <nav class="fixed top-0 left-0 w-full z-50 bg-[#000714] border-b border-white/10">
     <div class="relative flex items-center h-16 px-6">
 
-      <!-- Hamburger -->
-      <button class="text-3xl">
-        &#9776;
-      </button>
+        <!-- LEFT: HAMBURGER -->
+    <button id="menuBtn" class="text-3xl z-50">
+      &#9776;
+    </button>
+ <aside
+      id="sidebar"
+      class="fixed top-0 left-0 h-full w-64 pt-40 bg-[#000714]/90 text-white transform -translate-x-full transition-transform duration-300 p-6 z-50"
+    >
+      <ul class="space-y-4">
+        <li><a href="#" class="hover:text-[#799ba8]">Members</a></li>
+        <li><a href="#" class="hover:text-[#799ba8]">Newsletter</a></li>
+        <li><a href="archive.html" class="hover:text-[#799ba8]">Our Work</a></li>
+      </ul>
+    </aside>
+    <script>
+      const menuBtn = document.getElementById("menuBtn");
+      const sidebar = document.getElementById("sidebar");
+
+      menuBtn.onclick = () => {
+        sidebar.classList.toggle("-translate-x-full");
+      };
+    </script>
 
       <!-- Centered Logo -->
-      <div class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
-        <img src="logo.svg" class="h-24" alt="Logo" />
-      </div>
-
+      <a href="home.html" class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center">
+  <img src="logo.svg" class="h-24" alt="Student Parliament Logo" />
+</a>
     </div>
   </nav>
 
@@ -106,4 +123,5 @@ Internship Requirements Survey        </a>
 
 </body>
 </html>
+
 
