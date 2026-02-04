@@ -1,25 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="device-width, initial-scale 1.0" />
-    <title>Student Parliament | GJU</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Mona+Sans:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['"Mona Sans"', "sans-serif"],
-            },
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Members</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Mona Sans"', 'sans-serif'],
           },
         },
-      };
-    </script>
-  </head>
-  <body class="bg-[#000714] font-sans m-0 p-0"></body>
+      },
+    };
+  </script>
+</head>
+
+<body class="bg-[#000714] text-white font-sans">
+
+<!-- ======== HEADER ======== -->
+<section class="py-16 px-6 md:px-20 text-center">
+  <h1 class="text-4xl font-bold mb-3">Student Parliament Members</h1>
+  <p class="max-w-3xl mx-auto text-white/80 mb-6">
+    All listed members are part of the <strong>First Student Council</strong>.
+    Members are marked as <em>Active</em> or <em>Resigned</em> based on their term dates.
+  </p>
+
+  <p id="memberCount" class="text-lg font-semibold mb-8">
+    Current Members: — / 24
+  </p>
+
+  <!-- FILTERS -->
+  <div class="flex flex-col sm:flex-row gap-4 justify-center">
+    <select id="schoolFilter" class="bg-[#000714] border border-white/20 px-4 py-2 rounded">
+      <option value="all">All Schools</option>
+      <option value="List">List</option>
+      <option value="SATS">SATS</option>
+      <option value="SEEIT">SEEIT</option>
+      <option value="BS">BS</option>
+      <option value="SAMS">SAMS</option>
+      <option value="SAHSS">SAHSS</option>
+      <option value="SABE">SABE</option>
+      <option value="NS">NS</option>
+      <option value="SNREM">SNREM</option>
+    </select>
+
+    <select id="typeFilter" class="bg-[#000714] border border-white/20 px-4 py-2 rounded">
+      <option value="all">All Types</option>
+      <option value="Elected">Elected</option>
+      <option value="Appointed">Appointed</option>
+    </select>
+  </div>
+</section>
+
+<!-- ======== MEMBERS GRID ======== -->
+<section class="px-6 md:px-20 pb-20">
+  <div id="membersGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+
+    <!-- TEMPLATE:
+    data-end="YYYY-MM" OR "present"
+    -->
+
+    <!-- LIST -->
+    <div class="member-card" data-school="List" data-type="Elected" data-end="present">
+      <h3>Raya Fasha</h3><p>List Representative</p><span>Elected • May 2024 – Present</span>
+    </div>
+    <div class="member-card" data-school="List" data-type="Elected" data-end="2025-09">
+      <h3>Abdullah Qudah</h3><p>List Representative</p><span>Elected • May 2024 – Sep 2025</span>
+    </div>
+    <div class="member-card" data-school="List" data-type="Elected" data-end="2024-09">
+      <h3>Khalid Qudah</h3><p>List Representative</p><span>Elected • May 2024 – Sep 2024</span>
+    </div>
+    <div class="member-card" data-school="List" data-type="Elected" data-end="present">
+      <h3>Ayham Adwan</h3><p>List Representative</p><span>Elected • May 2024 – Present</span>
+    </div>
+    <div class="member-card" data-school="List" data-type="Elected" data-end="present">
+      <h3>Dima Sahib</h3><p>List Representative</p><span>Elected • May 2024 – Present</span>
+    </div>
+    <div class="member-card" data-school="List" data-type="Elected" data-end="2025-09">
+      <h3>Yousef Duwaikat</h3><p>List Representative</p><span>Elected • May 2024 – Sep 2025</span>
+    </div>
+
+    <!-- SATS -->
+    <div class="member-card" data-school="SATS" data-type="Elected" data-end="2025-09">
+      <h3>Abdullah Soub</h3><p>Vice President • SATS</p><span>Elected • May 2024 – Sep 2025</span>
+    </div>
+    <div class="member-card" data-school="SATS" data-type="Appointed" data-end="2024-09">
+      <h3>Omar Maayta</h3><p>SATS</p><span>Appointed • May – Sep 2024</span>
+    </div>
+    <div class="member-card" data-school="SATS" data-type="Appointed" data-end="present">
+      <h3>Ban Dukom</h3><p>SATS</p><span>Appointed • May – Present</span>
+    </div>
+    <div class="member-card" data-school="SATS" data-type="Appointed" data-end="present">
+      <h3>Dawoud Qatawneh</h3><p>SATS</p><span>Appointed • Sep 2025 – Present</span>
+    </div>
+
+    <!-- SEEIT -->
+    <div class="member-card" data-school="SEEIT" data-type="Elected" data-end="2025-09">
+      <h3>Zaid Shawagfeh</h3><p>SEEIT</p><span>Elected • May – Sep 2025</span>
+    </div>
+    <div class="member-card" data-school="SEEIT" data-type="Elected" data-end="2025-09">
+      <h3>Ward Al Barari</h3><p>SEEIT</p><span>Elected • May – Sep 2025</span>
+    </div>
+    <div class="member-card" data-school="SEEIT" data-type="Appointed" data-end="present">
+      <h3>Karmel Qawasmi</h3><p>SEEIT</p><span>Appointed • Sep 2025 – Present</span>
+    </div>
+
+    <!-- BS -->
+    <div class="member-card" data-school="BS" data-type="Appointed" data-end="present">
+      <h3>Nouf Abusharif</h3><p>BS</p><span>Appointed • May – Present</span>
+    </div>
+    <div class="member-card" data-school="BS" data-type="Elected" data-end="present">
+      <h3>Saeed Hardan</h3><p>BS</p><span>Elected • May – Present</span>
+    </div>
+    <div class="member-card" data-school="BS" data-type="Elected" data-end="2025-09">
+      <h3>Maya Rimawi</h3><p>BS</p><span>Elected • May – Sep 2025</span>
+    </div>
+
+    <!-- OTHERS -->
+    <div class="member-card" data-school="SAMS" data-type="Elected" data-end="2025-09">
+      <h3>Abdullah Osaili</h3><p>SAMS</p><span>Elected • May – Sep 2025</span>
+    </div>
+    <div class="member-card" data-school="SAMS" data-type="Appointed" data-end="present">
+      <h3>Suhaib Magableh</h3><p>SAMS</p><span>May – Present</span>
+    </div>
+    <div class="member-card" data-school="SABE" data-type="Elected" data-end="2025-09">
+      <h3>Hammam Shawagfeh</h3><p>SABE</p><span>Elected • May – Sep 2025</span>
+    </div>
+    <div class="member-card" data-school="NS" data-type="Elected" data-end="present">
+      <h3>Thamer Al Baset</h3><p>NS</p><span>Elected • May – Present</span>
+    </div>
+    <div class="member-card" data-school="SNREM" data-type="Elected" data-end="present">
+      <h3>Tamer Naser</h3><p>SNREM</p><span>Elected • May – Present</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======== SCRIPT ======== -->
+<script>
+  const members = document.querySelectorAll(".member-card");
+  const memberCount = document.getElementById("memberCount");
+  const schoolFilter = document.getElementById("schoolFilter");
+  const typeFilter = document.getElementById("typeFilter");
+
+  const now = new Date();
+
+  function isActive(end) {
+    if (end === "present") return true;
+    const [y, m] = end.split("-");
+    return new Date(y, m - 1) >= now;
+  }
+
+  function update() {
+    let activeCount = 0;
+
+    members.forEach(card => {
+      const active = isActive(card.dataset.end);
+      const matchSchool = schoolFilter.value === "all" || card.dataset.school === schoolFilter.value;
+      const matchType = typeFilter.value === "all" || card.dataset.type === typeFilter.value;
+
+      card.className = `member-card border border-white/10 rounded-xl p-6 ${
+        active ? "" : "opacity-40"
+      }`;
+
+      card.querySelector("span").innerHTML += active ? " • Active" : " • Resigned";
+
+      card.style.display = (matchSchool && matchType) ? "block" : "none";
+      if (active) activeCount++;
+    });
+
+    memberCount.textContent = `Current Members: ${activeCount} / 24`;
+  }
+
+  schoolFilter.addEventListener("change", update);
+  typeFilter.addEventListener("change", update);
+  update();
+</script>
+
+</body>
 </html>
