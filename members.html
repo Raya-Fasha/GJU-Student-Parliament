@@ -1,185 +1,298 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Members</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Mona Sans"', 'sans-serif'],
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Mona Sans"', "sans-serif"],
+            },
           },
         },
-      },
-    };
-  </script>
-</head>
+      };
+    </script>
+  </head>
 
-<body class="bg-[#000714] text-white font-sans">
+  <body class="bg-[#000714] text-white font-sans">
+    <!-- ======== NAVBAR ======== -->
+    <nav
+      class="fixed top-0 left-0 w-full z-[100] bg-[#000714] border-b border-white/10"
+    >
+      <div class="relative flex items-center h-16 px-6">
+        <!-- HAMBURGER -->
+        <button
+          id="menuBtn"
+          class="text-3xl relative z-[110]"
+          aria-label="Open menu"
+        >
+          &#9776;
+        </button>
 
-<!-- ======== HEADER ======== -->
-<section class="py-16 px-6 md:px-20 text-center">
-  <h1 class="text-4xl font-bold mb-3">Student Parliament Members</h1>
-  <p class="max-w-3xl mx-auto text-white/80 mb-6">
-    All listed members are part of the <strong>First Student Council</strong>.
-    Members are marked as <em>Active</em> or <em>Resigned</em> based on their term dates.
-  </p>
+        <!-- LOGO -->
+        <a
+          href="index.html"
+          class="absolute left-1/2 -translate-x-1/2 flex flex-col items-center"
+          aria-label="Home"
+        >
+          <img src="logo.svg" class="h-24" alt="Student Parliament Logo" />
+        </a>
+      </div>
+    </nav>
 
-  <p id="memberCount" class="text-lg font-semibold mb-8">
-    Current Members: — / 24
-  </p>
+    <!-- ======== SIDEBAR ======== -->
+    <aside
+      id="sidebar"
+      class="fixed top-0 left-0 h-full w-64 max-w-[80vw] pt-40
+             bg-[#000714]/90 text-white
+             transform -translate-x-full
+             transition-transform duration-300
+             p-6 z-40 pointer-events-none"
+    >
+      <ul class="space-y-4">
+        <li><a href="members.html" class="hover:text-[#799ba8]">Members</a></li>
+        <li><a href="post.html" class="hover:text-[#799ba8]">Newsletter</a></li>
+        <li><a href="archive.html" class="hover:text-[#799ba8]">Our Work</a></li>
+      </ul>
+    </aside>
 
-  <!-- FILTERS -->
-  <div class="flex flex-col sm:flex-row gap-4 justify-center">
-    <select id="schoolFilter" class="bg-[#000714] border border-white/20 px-4 py-2 rounded">
-      <option value="all">All Schools</option>
-      <option value="List">List</option>
-      <option value="SATS">SATS</option>
-      <option value="SEEIT">SEEIT</option>
-      <option value="BS">BS</option>
-      <option value="SAMS">SAMS</option>
-      <option value="SAHSS">SAHSS</option>
-      <option value="SABE">SABE</option>
-      <option value="NS">NS</option>
-      <option value="SNREM">SNREM</option>
-    </select>
+    <!-- ======== SIDEBAR SCRIPT ======== -->
+    <script>
+      const menuBtn = document.getElementById("menuBtn");
+      const sidebar = document.getElementById("sidebar");
 
-    <select id="typeFilter" class="bg-[#000714] border border-white/20 px-4 py-2 rounded">
-      <option value="all">All Types</option>
-      <option value="Elected">Elected</option>
-      <option value="Appointed">Appointed</option>
-    </select>
-  </div>
-</section>
+      menuBtn.addEventListener("click", () => {
+        const closed = sidebar.classList.contains("-translate-x-full");
+        sidebar.classList.toggle("-translate-x-full");
+        if (closed) sidebar.classList.remove("pointer-events-none");
+        else sidebar.classList.add("pointer-events-none");
+      });
 
-<!-- ======== MEMBERS GRID ======== -->
-<section class="px-6 md:px-20 pb-20">
-  <div id="membersGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+      sidebar.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          sidebar.classList.add("-translate-x-full", "pointer-events-none");
+        });
+      });
+    </script>
 
-    <!-- TEMPLATE:
-    data-end="YYYY-MM" OR "present"
-    -->
+    <!-- SPACER -->
+    <div class="h-20"></div>
 
-    <!-- LIST -->
-    <div class="member-card" data-school="List" data-type="Elected" data-end="present">
-      <h3>Raya Fasha</h3><p>List Representative</p><span>Elected • May 2024 – Present</span>
-    </div>
-    <div class="member-card" data-school="List" data-type="Elected" data-end="2025-09">
-      <h3>Abdullah Qudah</h3><p>List Representative</p><span>Elected • May 2024 – Sep 2025</span>
-    </div>
-    <div class="member-card" data-school="List" data-type="Elected" data-end="2024-09">
-      <h3>Khalid Qudah</h3><p>List Representative</p><span>Elected • May 2024 – Sep 2024</span>
-    </div>
-    <div class="member-card" data-school="List" data-type="Elected" data-end="present">
-      <h3>Ayham Adwan</h3><p>List Representative</p><span>Elected • May 2024 – Present</span>
-    </div>
-    <div class="member-card" data-school="List" data-type="Elected" data-end="present">
-      <h3>Dima Sahib</h3><p>List Representative</p><span>Elected • May 2024 – Present</span>
-    </div>
-    <div class="member-card" data-school="List" data-type="Elected" data-end="2025-09">
-      <h3>Yousef Duwaikat</h3><p>List Representative</p><span>Elected • May 2024 – Sep 2025</span>
-    </div>
+    <!-- ======== HEADER + FILTERS ======== -->
+    <section class="py-16 px-6 md:px-20 text-center">
+      <h1 class="text-4xl font-bold mb-3">Student Parliament Members</h1>
 
-    <!-- SATS -->
-    <div class="member-card" data-school="SATS" data-type="Elected" data-end="2025-09">
-      <h3>Abdullah Soub</h3><p>Vice President • SATS</p><span>Elected • May 2024 – Sep 2025</span>
-    </div>
-    <div class="member-card" data-school="SATS" data-type="Appointed" data-end="2024-09">
-      <h3>Omar Maayta</h3><p>SATS</p><span>Appointed • May – Sep 2024</span>
-    </div>
-    <div class="member-card" data-school="SATS" data-type="Appointed" data-end="present">
-      <h3>Ban Dukom</h3><p>SATS</p><span>Appointed • May – Present</span>
-    </div>
-    <div class="member-card" data-school="SATS" data-type="Appointed" data-end="present">
-      <h3>Dawoud Qatawneh</h3><p>SATS</p><span>Appointed • Sep 2025 – Present</span>
-    </div>
+      <p class="max-w-3xl mx-auto text-white/80 mb-6">
+        All listed members are part of the <strong>First Student Council</strong>.
+        Members are marked as <em>Active</em> or <em>Resigned</em> based on their term end date.
+      </p>
 
-    <!-- SEEIT -->
-    <div class="member-card" data-school="SEEIT" data-type="Elected" data-end="2025-09">
-      <h3>Zaid Shawagfeh</h3><p>SEEIT</p><span>Elected • May – Sep 2025</span>
-    </div>
-    <div class="member-card" data-school="SEEIT" data-type="Elected" data-end="2025-09">
-      <h3>Ward Al Barari</h3><p>SEEIT</p><span>Elected • May – Sep 2025</span>
-    </div>
-    <div class="member-card" data-school="SEEIT" data-type="Appointed" data-end="present">
-      <h3>Karmel Qawasmi</h3><p>SEEIT</p><span>Appointed • Sep 2025 – Present</span>
-    </div>
+      <p id="memberCount" class="text-lg font-semibold mb-8">
+        Current Members: — / 24
+      </p>
 
-    <!-- BS -->
-    <div class="member-card" data-school="BS" data-type="Appointed" data-end="present">
-      <h3>Nouf Abusharif</h3><p>BS</p><span>Appointed • May – Present</span>
-    </div>
-    <div class="member-card" data-school="BS" data-type="Elected" data-end="present">
-      <h3>Saeed Hardan</h3><p>BS</p><span>Elected • May – Present</span>
-    </div>
-    <div class="member-card" data-school="BS" data-type="Elected" data-end="2025-09">
-      <h3>Maya Rimawi</h3><p>BS</p><span>Elected • May – Sep 2025</span>
-    </div>
+      <!-- FILTERS -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <select
+          id="schoolFilter"
+          class="bg-[#000714] border border-white/20 px-4 py-2 rounded-lg"
+        >
+          <option value="all">All Schools</option>
+          <option value="List">List</option>
+          <option value="SATS">SATS</option>
+          <option value="SEEIT">SEEIT</option>
+          <option value="SAMS">SAMS</option>
+          <option value="BS">BS</option>
+          <option value="SAHSS">SAHSS</option>
+          <option value="SABE">SABE</option>
+          <option value="NS">NS</option>
+          <option value="SNREM">SNREM</option>
+        </select>
 
-    <!-- OTHERS -->
-    <div class="member-card" data-school="SAMS" data-type="Elected" data-end="2025-09">
-      <h3>Abdullah Osaili</h3><p>SAMS</p><span>Elected • May – Sep 2025</span>
-    </div>
-    <div class="member-card" data-school="SAMS" data-type="Appointed" data-end="present">
-      <h3>Suhaib Magableh</h3><p>SAMS</p><span>May – Present</span>
-    </div>
-    <div class="member-card" data-school="SABE" data-type="Elected" data-end="2025-09">
-      <h3>Hammam Shawagfeh</h3><p>SABE</p><span>Elected • May – Sep 2025</span>
-    </div>
-    <div class="member-card" data-school="NS" data-type="Elected" data-end="present">
-      <h3>Thamer Al Baset</h3><p>NS</p><span>Elected • May – Present</span>
-    </div>
-    <div class="member-card" data-school="SNREM" data-type="Elected" data-end="present">
-      <h3>Tamer Naser</h3><p>SNREM</p><span>Elected • May – Present</span>
-    </div>
+        <select
+          id="typeFilter"
+          class="bg-[#000714] border border-white/20 px-4 py-2 rounded-lg"
+        >
+          <option value="all">All Types</option>
+          <option value="Elected">Elected</option>
+          <option value="Appointed">Appointed</option>
+        </select>
 
-  </div>
-</section>
+        <label class="flex items-center gap-2 text-white/80 select-none">
+          <input
+            id="activeOnly"
+            type="checkbox"
+            class="accent-white"
+          />
+          Show only active
+        </label>
+      </div>
+    </section>
 
-<!-- ======== SCRIPT ======== -->
-<script>
-  const members = document.querySelectorAll(".member-card");
-  const memberCount = document.getElementById("memberCount");
-  const schoolFilter = document.getElementById("schoolFilter");
-  const typeFilter = document.getElementById("typeFilter");
+    <!-- ======== MEMBERS GRID (rendered by JS) ======== -->
+    <section class="px-6 md:px-20 pb-20">
+      <div
+        id="membersGrid"
+        class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto"
+      ></div>
+    </section>
 
-  const now = new Date();
+    <script>
+      // End date format:
+      // - "present" means active
+      // - "YYYY-MM" means active through that month
+      const MEMBERS = [
+        // LIST
+        { name: "Raya Fasha", school: "List", type: "Elected", role: "List Representative", start: "2024-05", end: "present", note: "" },
+        { name: "Abdullah Qudah", school: "List", type: "Elected", role: "List Representative", start: "2024-05", end: "2025-09", note: "" },
+        { name: "Khalid Qudah", school: "List", type: "Elected", role: "List Representative", start: "2024-05", end: "2024-09", note: "Resigned" },
+        { name: "Ayham Adwan", school: "List", type: "Elected", role: "List Representative", start: "2024-05", end: "present", note: "" },
+        { name: "Dima Sahib", school: "List", type: "Elected", role: "List Representative", start: "2024-05", end: "present", note: "" },
+        { name: "Yousef Duwaikat", school: "List", type: "Elected", role: "List Representative", start: "2024-05", end: "2025-09", note: "" },
+        { name: "Ahmad Habahbeh", school: "List", type: "Elected", role: "List Representative", start: "2024-05", end: "present", note: "" },
+        { name: "Bahaa El Din", school: "List", type: "Elected", role: "List Representative", start: "2024-05", end: "present", note: "" },
+        { name: "Zaid Alawneh", school: "List", type: "Appointed", role: "List", start: "2025-09", end: "present", note: "" },
 
-  function isActive(end) {
-    if (end === "present") return true;
-    const [y, m] = end.split("-");
-    return new Date(y, m - 1) >= now;
-  }
+        // SATS
+        { name: "Abdullah Soub", school: "SATS", type: "Elected", role: "Vice President • SATS", start: "2024-05", end: "2025-09", note: "" },
+        { name: "Omar Maayta", school: "SATS", type: "Appointed", role: "SATS", start: "2024-05", end: "2024-09", note: "" },
+        { name: "Ban Dukom", school: "SATS", type: "Appointed", role: "SATS", start: "2024-05", end: "present", note: "" },
+        { name: "Tiba Rawashdeh", school: "SATS", type: "Appointed", role: "SATS", start: "2024-05", end: "present", note: "" },
+        { name: "Dawoud Qatawneh", school: "SATS", type: "Appointed", role: "SATS", start: "2025-09", end: "present", note: "" },
+        { name: "Adnan Kanaan", school: "SATS", type: "Appointed", role: "SATS", start: "2025-09", end: "present", note: "" },
 
-  function update() {
-    let activeCount = 0;
+        // SEEIT
+        { name: "Zaid Shawagfeh", school: "SEEIT", type: "Elected", role: "SEEIT", start: "2024-05", end: "2025-09", note: "" },
+        { name: "Ward Al Barari", school: "SEEIT", type: "Elected", role: "SEEIT", start: "2024-05", end: "2025-09", note: "" },
+        { name: "Karmel Qawasmi", school: "SEEIT", type: "Appointed", role: "SEEIT", start: "2025-09", end: "present", note: "" },
+        { name: "Sasha Shapsough", school: "SEEIT", type: "Appointed", role: "SEEIT", start: "2025-09", end: "present", note: "" },
+        { name: "Yazan Ayyash", school: "SEEIT", type: "Appointed", role: "SEEIT", start: "2025-09", end: "present", note: "" },
 
-    members.forEach(card => {
-      const active = isActive(card.dataset.end);
-      const matchSchool = schoolFilter.value === "all" || card.dataset.school === schoolFilter.value;
-      const matchType = typeFilter.value === "all" || card.dataset.type === typeFilter.value;
+        // SAMS
+        { name: "Abdullah Osaili", school: "SAMS", type: "Elected", role: "SAMS", start: "2024-05", end: "2025-09", note: "" },
+        { name: "Suhaib Magableh", school: "SAMS", type: "Elected", role: "SAMS", start: "2024-05", end: "present", note: "" },
+        { name: "Ansam Masaadeh", school: "SAMS", type: "Appointed", role: "SAMS", start: "2025-09", end: "present", note: "" },
 
-      card.className = `member-card border border-white/10 rounded-xl p-6 ${
-        active ? "" : "opacity-40"
-      }`;
+        // BS
+        { name: "Nouf Abusharif", school: "BS", type: "Appointed", role: "BS", start: "2024-05", end: "present", note: "" },
+        { name: "Saeed Hardan", school: "BS", type: "Elected", role: "BS", start: "2024-05", end: "present", note: "" },
+        { name: "Maya Rimawi", school: "BS", type: "Elected", role: "BS", start: "2024-05", end: "2025-09", note: "" },
+        { name: "Majd Hawamdeh", school: "BS", type: "Appointed", role: "BS", start: "2025-09", end: "present", note: "" },
+        { name: "Hareth Ataya", school: "BS", type: "Appointed", role: "BS", start: "2025-09", end: "present", note: "" },
 
-      card.querySelector("span").innerHTML += active ? " • Active" : " • Resigned";
+        // SAHSS
+        { name: "Abdullah Odeibat", school: "SAHSS", type: "Elected", role: "SAHSS", start: "2024-05", end: "present", note: "" },
 
-      card.style.display = (matchSchool && matchType) ? "block" : "none";
-      if (active) activeCount++;
-    });
+        // SABE
+        { name: "Hammam Shawagfeh", school: "SABE", type: "Elected", role: "SABE", start: "2024-05", end: "2025-09", note: "" },
 
-    memberCount.textContent = `Current Members: ${activeCount} / 24`;
-  }
+        // NS
+        { name: "Thamer Al Baset", school: "NS", type: "Elected", role: "NS", start: "2024-05", end: "present", note: "" },
 
-  schoolFilter.addEventListener("change", update);
-  typeFilter.addEventListener("change", update);
-  update();
-</script>
+        // SNREM
+        { name: "Tamer Naser", school: "SNREM", type: "Elected", role: "SNREM", start: "2024-05", end: "present", note: "" },
+      ];
 
-</body>
+      const grid = document.getElementById("membersGrid");
+      const memberCountEl = document.getElementById("memberCount");
+      const schoolFilter = document.getElementById("schoolFilter");
+      const typeFilter = document.getElementById("typeFilter");
+      const activeOnly = document.getElementById("activeOnly");
+
+      function endToDate(end) {
+        if (end === "present") return null;
+        const [y, m] = end.split("-").map(Number);
+        // treat as end of that month
+        return new Date(y, m, 0, 23, 59, 59);
+      }
+
+      function isActive(end) {
+        if (end === "present") return true;
+        const endDate = endToDate(end);
+        return endDate && endDate >= new Date();
+      }
+
+      function formatRange(start, end) {
+        const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+        const [sy, sm] = start.split("-").map(Number);
+        const startLabel = `${MONTHS[sm - 1]} ${sy}`;
+        if (end === "present") return `${startLabel} – Present`;
+        const [ey, em] = end.split("-").map(Number);
+        const endLabel = `${MONTHS[em - 1]} ${ey}`;
+        return `${startLabel} – ${endLabel}`;
+      }
+
+      function render() {
+        const school = schoolFilter.value;
+        const type = typeFilter.value;
+        const onlyActive = activeOnly.checked;
+
+        // Count ALL active members (not filtered) for "Current Members: X / 24"
+        const activeCount = MEMBERS.filter(m => isActive(m.end)).length;
+        memberCountEl.textContent = `Current Members: ${activeCount} / 24`;
+
+        // Render filtered grid
+        grid.innerHTML = "";
+
+        MEMBERS.forEach((m) => {
+          const active = isActive(m.end);
+
+          if (school !== "all" && m.school !== school) return;
+          if (type !== "all" && m.type !== type) return;
+          if (onlyActive && !active) return;
+
+          const statusText = active ? "Active" : "Resigned";
+          const term = formatRange(m.start, m.end);
+
+          const card = document.createElement("div");
+          card.className =
+            "border border-white/10 rounded-2xl p-6 bg-white/0 shadow-sm transition";
+          if (!active) card.classList.add("opacity-40");
+
+          card.innerHTML = `
+            <h3 class="text-xl font-semibold mb-1">${m.name}</h3>
+            <p class="text-white/70 mb-2">${m.role}</p>
+            <p class="text-white/60 text-sm">
+              ${m.type} • ${term} • ${statusText}${m.note ? ` • ${m.note}` : ""}
+            </p>
+          `;
+
+          grid.appendChild(card);
+        });
+      }
+
+      schoolFilter.addEventListener("change", render);
+      typeFilter.addEventListener("change", render);
+      activeOnly.addEventListener("change", render);
+      render();
+    </script>
+
+    <!-- ======== FOOTER (optional, consistent with your site) ======== -->
+    <footer
+      class="border-t border-white/10 py-6 px-6 text-sm text-white/70 flex flex-col md:flex-row justify-between"
+    >
+      <p>© 2024 – 2026 Student Parliament</p>
+      <div class="flex gap-4">
+        <a
+          href="https://www.instagram.com/gju.student.parliament/"
+          class="hover:text-white"
+        >
+          Instagram
+        </a>
+        <a href="mailto:students.council@gju.edu.jo" class="hover:text-white">
+          students.council@gju.edu.jo
+        </a>
+        <a
+          href="https://chat.whatsapp.com/GkkpWbNnHZmLRPqLpFMwnJ?mode=wwc"
+          class="hover:text-white"
+        >
+          WhatsApp Group
+        </a>
+      </div>
+    </footer>
+  </body>
 </html>
